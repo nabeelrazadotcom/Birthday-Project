@@ -1422,15 +1422,11 @@ body::after {
   }
 }
 .name-tag {
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--accent);
+  transform: translate(56%, -50%);
+  background-color: var(--primary);
   color: #ffffff;
-  
-  font-size: 0.68rem;
-  padding: 3px 12px;
+  font-size: 0.85rem;
+  padding: 2px 8px;
   border-radius: 12px;
   font-weight: 700;
   white-space: nowrap;

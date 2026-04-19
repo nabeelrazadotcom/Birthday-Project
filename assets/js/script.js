@@ -189,7 +189,7 @@ function ripple(x, y, color) {
 // ========================= COUNTDOWN =========================
 function startCountdown() {
   // EDIT: Change year to the current birthday year if needed.
-  const birthday = new Date(2026, 4, 5, 0, 0, 0);
+  const birthday = new Date(2026, 4, 4, 0, 0, 0);
 
   if (countdownTimer) clearInterval(countdownTimer);
 
@@ -698,7 +698,7 @@ function startHeartRain() {
 // ========================= TIME COUNTER =========================
 function startTimeCounter() {
   // EDIT: Change this to your actual relationship start date.
-  const start = new Date(2023, 0, 1); // Jan 1, 2023 - change this
+  const start = new Date(2025, 9, 21); // Jan 1, 2023 - change this
 
   if (timeCounterTimer) clearInterval(timeCounterTimer);
 
