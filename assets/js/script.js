@@ -72,9 +72,13 @@ function applyWorld(nextWorld, opts = {}) {
   const sub = document.getElementById("themeSub");
   const icon = document.getElementById("themeIcon");
 
-  if (lbl) lbl.textContent = nextWorld === "starlit" ? "Back to Day" : "Enter Night";
-  if (sub) sub.textContent = nextWorld === "starlit" ? "Starlit World" : "Daydream World";
-  if (icon) setUseHref(icon, nextWorld === "starlit" ? "#ico-star" : "#ico-portal");
+  if (lbl)
+    lbl.textContent = nextWorld === "starlit" ? "Back to Day" : "Enter Night";
+  if (sub)
+    sub.textContent =
+      nextWorld === "starlit" ? "Starlit World" : "Daydream World";
+  if (icon)
+    setUseHref(icon, nextWorld === "starlit" ? "#ico-star" : "#ico-portal");
 
   if (opts.portalPoint) {
     playWorldPortal(opts.portalPoint.x, opts.portalPoint.y, nextWorld);
@@ -83,7 +87,9 @@ function applyWorld(nextWorld, opts = {}) {
 
 function toggleTheme() {
   const btn = document.getElementById("themeBtn");
-  const rect = btn ? btn.getBoundingClientRect() : { left: innerWidth / 2, top: 18, width: 1, height: 1 };
+  const rect = btn
+    ? btn.getBoundingClientRect()
+    : { left: innerWidth / 2, top: 18, width: 1, height: 1 };
   const pt = getCenterRect(rect);
 
   // If the secret world is active, toggling returns to the previous base world.
@@ -164,7 +170,6 @@ function navigateTo(targetId, anim, triggerEl = null) {
     current = targetId;
 
     if (targetId === "s2") startCountdown();
-    if (targetId === "s3") armNoButton();
     if (targetId === "s4") resetCakeScene();
     if (targetId === "s5") initGame();
     if (targetId === "sf") {
@@ -253,10 +258,14 @@ function moveNoButton(btn, opts = {}) {
 
   let best = { x: bounds.left, y: bounds.top, d: -1 };
   for (let i = 0; i < tries; i++) {
-    const x = bounds.left + Math.random() * Math.max(1, bounds.right - bounds.left);
-    const y = bounds.top + Math.random() * Math.max(1, bounds.bottom - bounds.top);
+    const x =
+      bounds.left + Math.random() * Math.max(1, bounds.right - bounds.left);
+    const y =
+      bounds.top + Math.random() * Math.max(1, bounds.bottom - bounds.top);
     const d =
-      avoidX == null || avoidY == null ? 9999 : Math.hypot(x - avoidX, y - avoidY);
+      avoidX == null || avoidY == null
+        ? 9999
+        : Math.hypot(x - avoidX, y - avoidY);
     if (d > best.d) best = { x, y, d };
     if (d >= minDist) break;
   }
@@ -299,9 +308,9 @@ function runAway(e) {
   const wrap = document.getElementById("ynWrap");
   const rect = wrap ? wrap.getBoundingClientRect() : { left: 0, top: 0 };
   const avoidX =
-    "clientX" in e ? e.clientX - rect.left : (wrap ? wrap.clientWidth / 2 : 160);
+    "clientX" in e ? e.clientX - rect.left : wrap ? wrap.clientWidth / 2 : 160;
   const avoidY =
-    "clientY" in e ? e.clientY - rect.top : (wrap ? wrap.clientHeight / 2 : 90);
+    "clientY" in e ? e.clientY - rect.top : wrap ? wrap.clientHeight / 2 : 90;
   moveNoButton(btn, { avoidX, avoidY, minDist: 170 });
 
   if (txt) {
@@ -317,13 +326,13 @@ function onYes() {
     noBtn.style.opacity = "0";
     noBtn.style.transform = "scale(0.8)";
   }
-  ripple(window.innerWidth / 2, window.innerHeight / 2, "rgba(34,211,238,0.45)");
+  ripple(
+    window.innerWidth / 2,
+    window.innerHeight / 2,
+    "rgba(34,211,238,0.45)",
+  );
   setTimeout(() => navigateTo("s4", "curtain"), 650);
 }
-
-window.addEventListener("resize", () => {
-  if (current === "s3") armNoButton();
-});
 
 // ========================= PHOTO CLICK - SECRET WORLD =========================
 function photoClick(e) {
@@ -387,7 +396,8 @@ function resetCakeScene() {
       '<span class="btn-ico" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><use href="#ico-sparkle"></use></svg></span>Click to blow the candles';
   }
   const hint = document.getElementById("blowHint");
-  if (hint) hint.textContent = "Tap the button and let the glow melt into the night.";
+  if (hint)
+    hint.textContent = "Tap the button and let the glow melt into the night.";
   const heading = document.getElementById("cakeHeading");
   if (heading) {
     heading.textContent = "Click once and let the candles surrender.";
@@ -472,7 +482,14 @@ function launchFireworks() {
   fwRunning = true;
 
   function burst(x, y, colorSet) {
-    const colors = colorSet || ["#ff4d7d", "#ffb703", "#22d3ee", "#34d399", "#a78bfa", "#ffffff"];
+    const colors = colorSet || [
+      "#ff4d7d",
+      "#ffb703",
+      "#22d3ee",
+      "#34d399",
+      "#a78bfa",
+      "#ffffff",
+    ];
     const count = 84;
     for (let i = 0; i < count; i++) {
       const angle = ((Math.PI * 2) / count) * i;
@@ -644,7 +661,8 @@ function checkMatch() {
     flipped = [];
     canFlip = true;
     if (matched === 4) {
-      if (status) status.textContent = "You found them all. Your letter is ready.";
+      if (status)
+        status.textContent = "You found them all. Your letter is ready.";
       const openBtn = document.querySelector(".letter-finale");
       if (openBtn) openBtn.classList.add("show");
     }
