@@ -189,7 +189,7 @@ function ripple(x, y, color) {
 // ========================= COUNTDOWN =========================
 function startCountdown() {
   // EDIT: Change year to the current birthday year if needed.
-  const birthday = new Date(2026, 4, 4, 0, 0, 0);
+  const birthday = new Date(2026, 4, 5, 0, 0, 0);
 
   if (countdownTimer) clearInterval(countdownTimer);
 
