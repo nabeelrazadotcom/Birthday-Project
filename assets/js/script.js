@@ -46,17 +46,21 @@ function markTick(boxId) {
   const bg = document.getElementById("petalsBg");
   if (!bg) return;
   bg.innerHTML = "";
-  for (let i = 0; i < 18; i++) {
+  const hues = [210, 220, 200, 250, 180]; // blue to cyan to violet
+  for (let i = 0; i < 30; i++) {
     const p = document.createElement("div");
     p.className = "petal";
-    const sz = 6 + Math.random() * 12;
+    const sz = 3 + Math.random() * 9;
+    const hue = hues[Math.floor(Math.random() * hues.length)];
+    const drift = (Math.random() - 0.5) * 40;
     p.style.cssText = `
       left:${Math.random() * 100}vw;
       width:${sz}px;height:${sz}px;
-      animation-duration:${5 + Math.random() * 9}s;
-      animation-delay:${Math.random() * 8}s;
-      opacity:${0.18 + Math.random() * 0.28};
-      filter: blur(${Math.random() * 0.8}px);
+      animation-duration:${10 + Math.random() * 16}s;
+      animation-delay:${Math.random() * 14}s;
+      opacity:${0.55 + Math.random() * 0.45};
+      filter: hue-rotate(${hue - 210}deg) blur(${Math.random() * 0.4}px);
+      --drift-x:${drift}px;
     `;
     bg.appendChild(p);
   }
@@ -173,10 +177,10 @@ function navigateTo(targetId, anim, triggerEl = null) {
     if (targetId === "s4") resetCakeScene();
     if (targetId === "s5") initGame();
     if (targetId === "sf") {
-      startHeartRain();
+      startCelebrationRain();
       startTimeCounter();
     }
-  }, 520);
+  }, 720); // matches longest CSS transition (0.7s)
 }
 
 // ========================= RIPPLE EFFECT =========================
@@ -690,24 +694,35 @@ function closeLetter() {
   navigateTo("sf", "bloom");
 }
 
-// ========================= HEARTS RAIN =========================
+// ========================= CELEBRATION RAIN =========================
+function startCelebrationRain() { startHeartRain(); } // alias for legacy callers
 function startHeartRain() {
   const rain = document.getElementById("heartRain");
   if (!rain) return;
   rain.innerHTML = "";
 
-  for (let i = 0; i < 24; i++) {
+  const types = [
+    { icon: "#ico-star",    filter: "drop-shadow(0 0 6px rgba(251,191,36,0.9)) drop-shadow(0 0 14px rgba(251,191,36,0.5))" },
+    { icon: "#ico-sparkle", filter: "drop-shadow(0 0 6px rgba(96,165,250,0.9)) drop-shadow(0 0 14px rgba(59,130,246,0.5))" },
+    { icon: "#ico-star",    filter: "drop-shadow(0 0 6px rgba(167,139,250,0.9)) drop-shadow(0 0 14px rgba(139,92,246,0.5))" },
+    { icon: "#ico-balloon", filter: "drop-shadow(0 0 5px rgba(52,211,153,0.8)) drop-shadow(0 0 12px rgba(16,185,129,0.4))" },
+    { icon: "#ico-sparkle", filter: "drop-shadow(0 0 6px rgba(251,191,36,0.9)) drop-shadow(0 0 14px rgba(245,158,11,0.5))" },
+  ];
+
+  for (let i = 0; i < 40; i++) {
     const h = document.createElement("div");
     h.className = "fh";
-    h.innerHTML = `<svg class="ico fh-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-heart"></use></svg>`;
-    const size = 12 + Math.random() * 18;
-    const hue = 330 + Math.random() * 55;
+    const t = types[Math.floor(Math.random() * types.length)];
+    h.innerHTML = `<svg class="ico fh-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="${t.icon}"></use></svg>`;
+    const size = 10 + Math.random() * 26;
+    const drift = (Math.random() - 0.5) * 60;
     h.style.cssText = `
       left:${Math.random() * 100}vw;
       width:${size}px;height:${size}px;
-      animation-duration:${4 + Math.random() * 6}s;
-      animation-delay:${Math.random() * 5}s;
-      filter: hue-rotate(${hue}deg) saturate(1.25);
+      animation-duration:${5 + Math.random() * 9}s;
+      animation-delay:${Math.random() * 7}s;
+      filter:${t.filter};
+      --drift-x:${drift}px;
     `;
     rain.appendChild(h);
   }
