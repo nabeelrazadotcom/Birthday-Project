@@ -245,11 +245,15 @@ function getNoSafeBounds(btn) {
   const wrapW = wrap ? wrap.clientWidth : 320;
   const wrapH = wrap ? wrap.clientHeight : 180;
 
+  // On mobile (< 480px), use tighter bounds to prevent button from going off-screen
+  const isMobile = window.innerWidth < 480;
+  const mobilePad = isMobile ? 8 : pad;
+
   return {
-    left: pad,
-    top: pad,
-    right: Math.max(pad, wrapW - btnW - pad),
-    bottom: Math.max(pad, wrapH - btnH - pad),
+    left: mobilePad,
+    top: mobilePad,
+    right: Math.max(mobilePad, wrapW - btnW - mobilePad),
+    bottom: Math.max(mobilePad, wrapH - btnH - mobilePad),
   };
 }
 
@@ -315,7 +319,12 @@ function runAway(e) {
     "clientX" in e ? e.clientX - rect.left : wrap ? wrap.clientWidth / 2 : 160;
   const avoidY =
     "clientY" in e ? e.clientY - rect.top : wrap ? wrap.clientHeight / 2 : 90;
-  moveNoButton(btn, { avoidX, avoidY, minDist: 170 });
+
+  // On mobile, reduce the minimum distance to avoid button going off-screen
+  const isMobile = window.innerWidth < 480;
+  const minDist = isMobile ? 60 : 170;
+
+  moveNoButton(btn, { avoidX, avoidY, minDist });
 
   if (txt) {
     if (noEscaped === 3) txt.textContent = "Never!";
@@ -695,18 +704,40 @@ function closeLetter() {
 }
 
 // ========================= CELEBRATION RAIN =========================
-function startCelebrationRain() { startHeartRain(); } // alias for legacy callers
+function startCelebrationRain() {
+  startHeartRain();
+} // alias for legacy callers
 function startHeartRain() {
   const rain = document.getElementById("heartRain");
   if (!rain) return;
   rain.innerHTML = "";
 
   const types = [
-    { icon: "#ico-star",    filter: "drop-shadow(0 0 6px rgba(251,191,36,0.9)) drop-shadow(0 0 14px rgba(251,191,36,0.5))" },
-    { icon: "#ico-sparkle", filter: "drop-shadow(0 0 6px rgba(96,165,250,0.9)) drop-shadow(0 0 14px rgba(59,130,246,0.5))" },
-    { icon: "#ico-star",    filter: "drop-shadow(0 0 6px rgba(167,139,250,0.9)) drop-shadow(0 0 14px rgba(139,92,246,0.5))" },
-    { icon: "#ico-balloon", filter: "drop-shadow(0 0 5px rgba(52,211,153,0.8)) drop-shadow(0 0 12px rgba(16,185,129,0.4))" },
-    { icon: "#ico-sparkle", filter: "drop-shadow(0 0 6px rgba(251,191,36,0.9)) drop-shadow(0 0 14px rgba(245,158,11,0.5))" },
+    {
+      icon: "#ico-star",
+      filter:
+        "drop-shadow(0 0 6px rgba(251,191,36,0.9)) drop-shadow(0 0 14px rgba(251,191,36,0.5))",
+    },
+    {
+      icon: "#ico-sparkle",
+      filter:
+        "drop-shadow(0 0 6px rgba(96,165,250,0.9)) drop-shadow(0 0 14px rgba(59,130,246,0.5))",
+    },
+    {
+      icon: "#ico-star",
+      filter:
+        "drop-shadow(0 0 6px rgba(167,139,250,0.9)) drop-shadow(0 0 14px rgba(139,92,246,0.5))",
+    },
+    {
+      icon: "#ico-balloon",
+      filter:
+        "drop-shadow(0 0 5px rgba(52,211,153,0.8)) drop-shadow(0 0 12px rgba(16,185,129,0.4))",
+    },
+    {
+      icon: "#ico-sparkle",
+      filter:
+        "drop-shadow(0 0 6px rgba(251,191,36,0.9)) drop-shadow(0 0 14px rgba(245,158,11,0.5))",
+    },
   ];
 
   for (let i = 0; i < 40; i++) {
