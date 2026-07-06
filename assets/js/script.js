@@ -194,7 +194,7 @@ function ripple(x, y, color) {
 // ========================= COUNTDOWN =========================
 function startCountdown() {
   // EDIT: Change year to the current birthday year if needed.
-  const birthday = new Date(2026, 4, 5, 0, 0, 0);
+  const birthday = new Date(2026, 6, 6, 0, 0, 0);
 
   if (countdownTimer) clearInterval(countdownTimer);
 
@@ -314,9 +314,9 @@ function runAway(e) {
   moveNoButton(btn, { avoidX, avoidY, minDist: 170 });
 
   if (txt) {
-    if (noEscaped === 3) txt.textContent = "Nope";
-    if (noEscaped === 6) txt.textContent = "...";
-    if (noEscaped === 9) txt.textContent = "Still no";
+    if (noEscaped === 3) txt.textContent = "Never!";
+    if (noEscaped === 6) txt.textContent = "Liar!";
+    if (noEscaped === 9) txt.textContent = "Nice try";
   }
 }
 
@@ -347,7 +347,7 @@ function photoClick(e) {
   } else {
     secretWorldActive = false;
     applyWorld(previousWorldBeforeSecret, { portalPoint: pt });
-    ripple(pt.x, pt.y, "rgba(255,77,125,0.55)");
+    ripple(pt.x, pt.y, "rgba(59,130,246,0.55)");
   }
 }
 
@@ -483,8 +483,8 @@ function launchFireworks() {
 
   function burst(x, y, colorSet) {
     const colors = colorSet || [
-      "#ff4d7d",
-      "#ffb703",
+      "#3b82f6",
+      "#06b6d4",
       "#22d3ee",
       "#34d399",
       "#a78bfa",
@@ -511,9 +511,9 @@ function launchFireworks() {
   function queueShell() {
     if (!fwRunning) return;
     const palette = [
-      ["#ff4d7d", "#ff8fab", "#ffd166", "#ffffff"],
-      ["#22d3ee", "#60a5fa", "#a78bfa", "#ffffff"],
-      ["#ffb703", "#fb7185", "#f9fafb", "#f97316"],
+      ["#3b82f6", "#60a5fa", "#bfdbfe", "#ffffff"],
+      ["#22d3ee", "#06b6d4", "#a78bfa", "#ffffff"],
+      ["#8b5cf6", "#a78bfa", "#f9fafb", "#34d399"],
     ];
     fwShells.push({
       x: 90 + Math.random() * (canvas.width - 180),
@@ -594,7 +594,7 @@ function stopFireworks() {
 }
 
 // ========================= MEMORY GAME =========================
-const gameIcons = ["rose", "heart", "sparkle", "star"];
+const gameIcons = ["gamepad", "balloon", "sparkle", "star"];
 let flipped = [];
 let matched = 0;
 let canFlip = true;
@@ -605,8 +605,8 @@ function shuffle(a) {
 
 function iconSvg(name, cls = "game-ico") {
   const map = {
-    rose: "#ico-rose",
-    heart: "#ico-heart",
+    gamepad: "#ico-gamepad",
+    balloon: "#ico-balloon",
     sparkle: "#ico-sparkle",
     star: "#ico-star",
   };
@@ -715,8 +715,8 @@ function startHeartRain() {
 
 // ========================= TIME COUNTER =========================
 function startTimeCounter() {
-  // EDIT: Change this to your actual relationship start date.
-  const start = new Date(2025, 9, 21); // Jan 1, 2023 - change this
+  // EDIT: Change this to when you and your friend first met.
+  const start = new Date(2020, 0, 1); // Jan 1, 2020 - change this to your actual friendship start date
 
   if (timeCounterTimer) clearInterval(timeCounterTimer);
 

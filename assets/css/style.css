@@ -1,22 +1,22 @@
 /* ============================= WORLD VARIABLES ============================= */
 :root,
 [data-world="daydream"] {
-  --bg: #fff3f0;
-  --bg2: #ffe7f0;
-  --bg3: #fff0db;
-  --primary: #ff4d7d;
-  --secondary: rgba(255, 77, 125, 0.18);
-  --accent: #5a2a44;
-  --gold: #ffb703;
-  --text: #281b27;
-  --text-light: rgba(40, 27, 39, 0.68);
+  --bg: #f0f4ff;
+  --bg2: #dbeafe;
+  --bg3: #eff6ff;
+  --primary: #3b82f6;
+  --secondary: rgba(59, 130, 246, 0.18);
+  --accent: #1e3a5f;
+  --gold: #06b6d4;
+  --text: #1a1f35;
+  --text-light: rgba(26, 31, 53, 0.68);
   --card: rgba(255, 255, 255, 0.72);
-  --border: rgba(40, 27, 39, 0.14);
-  --shadow: rgba(26, 11, 25, 0.18);
-  --glow: rgba(255, 77, 125, 0.35);
-  --overlay: rgba(40, 27, 39, 0.06);
+  --border: rgba(26, 31, 53, 0.14);
+  --shadow: rgba(11, 20, 50, 0.18);
+  --glow: rgba(59, 130, 246, 0.35);
+  --overlay: rgba(26, 31, 53, 0.06);
   --veil: rgba(255, 255, 255, 0.22);
-  --fx-stroke: rgba(90, 42, 68, 0.55);
+  --fx-stroke: rgba(30, 58, 95, 0.55);
 }
 [data-world="starlit"] {
   --bg: #080a15;
@@ -356,8 +356,8 @@ body::after {
   animation: petalFall linear infinite;
   background: linear-gradient(
     135deg,
-    rgba(255, 77, 125, 0.55),
-    rgba(255, 183, 3, 0.35)
+    rgba(59, 130, 246, 0.55),
+    rgba(6, 182, 212, 0.35)
   );
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   mix-blend-mode: multiply;
@@ -475,11 +475,11 @@ body::after {
   inset: -50%;
   background: conic-gradient(
     from 180deg,
-    rgba(255, 77, 125, 0),
-    rgba(255, 77, 125, 0.35),
+    rgba(59, 130, 246, 0),
+    rgba(59, 130, 246, 0.35),
     rgba(34, 211, 238, 0.3),
-    rgba(255, 183, 3, 0.35),
-    rgba(255, 77, 125, 0)
+    rgba(139, 92, 246, 0.35),
+    rgba(59, 130, 246, 0)
   );
   animation: shineSpin 2.6s linear infinite;
   filter: blur(1px);
@@ -508,7 +508,7 @@ body::after {
   background:
     radial-gradient(
       600px 380px at var(--x, 50%) var(--y, 0%),
-      rgba(255, 77, 125, 0.55),
+      rgba(59, 130, 246, 0.55),
       transparent 65%
     ),
     radial-gradient(
@@ -638,12 +638,12 @@ body::after {
   100% {
     box-shadow:
       0 18px 44px var(--shadow),
-      0 0 0 0 rgba(255, 77, 125, 0.42);
+      0 0 0 0 rgba(59, 130, 246, 0.42);
   }
   50% {
     box-shadow:
       0 24px 58px var(--glow),
-      0 0 0 12px rgba(255, 77, 125, 0);
+      0 0 0 12px rgba(59, 130, 246, 0);
   }
 }
 .btn-pulse {
@@ -748,7 +748,7 @@ body::after {
   background-image:
     radial-gradient(
       circle at 12% 18%,
-      rgba(255, 77, 125, 0.8) 0 2px,
+      rgba(59, 130, 246, 0.8) 0 2px,
       transparent 3px
     ),
     radial-gradient(
@@ -944,8 +944,8 @@ body::after {
   border-radius: 50% 50% 0 50%;
   background: linear-gradient(
     135deg,
-    rgba(255, 77, 125, 0.8),
-    rgba(255, 183, 3, 0.7)
+    rgba(59, 130, 246, 0.8),
+    rgba(6, 182, 212, 0.7)
   );
   top: 10px;
   opacity: 0.75;
@@ -1269,8 +1269,8 @@ body::after {
   z-index: 5;
   background: linear-gradient(
     135deg,
-    rgba(255, 77, 125, 0.95),
-    rgba(255, 183, 3, 0.78)
+    rgba(239, 68, 68, 0.95),
+    rgba(249, 115, 22, 0.78)
   );
   border: none;
   color: #fff;
@@ -1676,7 +1676,7 @@ body::after {
   color: #ffd66b;
   text-shadow:
     0 0 14px rgba(255, 214, 107, 0.55),
-    0 0 28px rgba(255, 77, 125, 0.4);
+    0 0 28px rgba(139, 92, 246, 0.4);
   transform: scale(1.04);
 }
 #s4.celebration-night .cake-heading,
@@ -1707,36 +1707,36 @@ body::after {
       rgba(255, 255, 255, 0.7),
       transparent 22%
     ),
-    linear-gradient(135deg, #ffdce7, #f2a9c1);
+    linear-gradient(135deg, #bfdbfe, #93c5fd);
   border-radius: 20px 20px 8px 8px;
   position: relative;
-  border: 1.5px solid rgba(232, 160, 180, 0.5);
+  border: 1.5px solid rgba(147, 197, 253, 0.5);
 }
 .cake-mid {
   width: 144px;
   height: 38px;
   background:
-    linear-gradient(135deg, #ffd2e2, #efb0c4),
+    linear-gradient(135deg, #93c5fd, #60a5fa),
     repeating-linear-gradient(
       90deg,
       rgba(255, 255, 255, 0.1) 0 8px,
       rgba(255, 255, 255, 0.02) 8px 16px
     );
   border-radius: 14px;
-  border: 1.5px solid rgba(232, 160, 180, 0.4);
+  border: 1.5px solid rgba(96, 165, 250, 0.4);
 }
 .cake-bot {
   width: 182px;
   height: 46px;
   background:
-    linear-gradient(135deg, #f4b0c1, #d78093),
+    linear-gradient(135deg, #3b82f6, #1d4ed8),
     repeating-linear-gradient(
       90deg,
       rgba(255, 255, 255, 0.08) 0 10px,
       rgba(255, 255, 255, 0.02) 10px 20px
     );
   border-radius: 18px 18px 24px 24px;
-  border: 1.5px solid rgba(193, 127, 138, 0.4);
+  border: 1.5px solid rgba(59, 130, 246, 0.4);
 }
 .cake-top::after,
 .cake-mid::after,
@@ -1839,11 +1839,11 @@ body::after {
   border-radius: 18px 18px 10px 10px;
   background: linear-gradient(
     180deg,
-    rgba(255, 226, 235, 0.98),
-    rgba(246, 180, 201, 0.92)
+    rgba(219, 234, 254, 0.98),
+    rgba(147, 197, 253, 0.92)
   );
   z-index: 3;
-  box-shadow: 0 6px 14px rgba(197, 110, 138, 0.22);
+  box-shadow: 0 6px 14px rgba(59, 130, 246, 0.22);
 }
 .smoke {
   position: absolute;
@@ -1876,7 +1876,7 @@ body::after {
 }
 .blow-btn {
   margin-top: 12px;
-  background: linear-gradient(135deg, #ff7a59, #ff4d7d 55%, #ffb703);
+  background: linear-gradient(135deg, #06b6d4, #3b82f6 55%, #8b5cf6);
   border: 0;
   color: #fff;
   font-family: "Fraunces", serif;
@@ -1885,7 +1885,7 @@ body::after {
   padding: 12px 20px;
   border-radius: 999px;
   box-shadow:
-    0 24px 54px rgba(255, 77, 125, 0.34),
+    0 24px 54px rgba(59, 130, 246, 0.34),
     inset 0 1px 0 rgba(255, 255, 255, 0.28);
   cursor: pointer;
   display: inline-flex;
@@ -1927,7 +1927,7 @@ body::after {
 .blow-btn:hover {
   transform: translateY(-4px) scale(1.03);
   box-shadow:
-    0 32px 68px rgba(255, 77, 125, 0.42),
+    0 32px 68px rgba(59, 130, 246, 0.42),
     inset 0 1px 0 rgba(255, 255, 255, 0.32);
   filter: saturate(1.08);
 }
@@ -2220,7 +2220,7 @@ body::after {
     ),
     radial-gradient(
       circle at top left,
-      rgba(255, 77, 125, 0.08),
+      rgba(59, 130, 246, 0.08),
       transparent 22%
     );
   border-radius: 32px;
@@ -2252,7 +2252,7 @@ body::after {
   height: 180px;
   background: radial-gradient(
     circle,
-    rgba(255, 77, 125, 0.18),
+    rgba(59, 130, 246, 0.18),
     transparent 66%
   );
   pointer-events: none;
@@ -2275,10 +2275,10 @@ body::after {
   border-radius: 999px;
   background: linear-gradient(
     135deg,
-    rgba(255, 77, 125, 0.95),
-    rgba(255, 183, 3, 0.9)
+    rgba(59, 130, 246, 0.95),
+    rgba(6, 182, 212, 0.9)
   );
-  box-shadow: 0 16px 38px rgba(255, 77, 125, 0.28);
+  box-shadow: 0 16px 38px rgba(59, 130, 246, 0.28);
 }
 .letter-stamp .ico {
   width: 22px;
