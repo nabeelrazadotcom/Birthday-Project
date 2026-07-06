@@ -2552,7 +2552,37 @@ body::after {
   background: transparent;
 }
 
-/* Mobile-first responsive adjustments */
+/* Ensure small devices can scroll if content is taller than viewport */
+@media (max-width: 480px) {
+  html,
+  body {
+    overflow-y: auto;
+  }
+}
+
+/* Landscape mobile: force 4x2 game grid so next button appears below */
+@media (max-width: 480px) and (orientation: landscape) {
+  .game-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(70px, auto);
+    gap: 8px;
+    max-width: calc(100vw - 32px);
+    margin: 0 auto;
+  }
+  .g-card {
+    aspect-ratio: 1;
+  }
+  .letter-finale.show {
+    display: inline-flex;
+    justify-content: center;
+  }
+  .tc-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 480px) {
   /* General layout */
   .screen-inner {
@@ -2735,22 +2765,25 @@ body::after {
   /* Screen 5 - Game */
   .s5-inner {
     max-width: 100%;
+    gap: 8px;
+  }
+
+  .game-stage {
+    gap: 8px;
   }
 
   .game-title {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
+  }
+
+  .game-sub {
+    font-size: 0.75rem;
   }
 
   .game-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    max-width: 100%;
-  }
-
-  /* Final screen */
-  .ily {
-    font-size: 2.8rem;
-  }
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    max-width: 260px;
 
   .ily-sub {
     font-size: 1rem;

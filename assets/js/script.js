@@ -674,10 +674,18 @@ function checkMatch() {
     flipped = [];
     canFlip = true;
     if (matched === 4) {
-      if (status)
-        status.textContent = "You found them all. Your letter is ready.";
+      if (status) status.textContent = "You win, going next....";
       const openBtn = document.querySelector(".letter-finale");
       if (openBtn) openBtn.classList.add("show");
+
+      // Auto-open the letter overlay and auto-advance to final screen shortly after
+      setTimeout(() => {
+        showLetter();
+        // Auto-close the letter and navigate to final screen after a short pause
+        setTimeout(() => {
+          closeLetter();
+        }, 1600);
+      }, 2000);
     }
   } else {
     if (status) status.textContent = "Not a match - try again.";
@@ -761,28 +769,60 @@ function startHeartRain() {
 
 // ========================= TIME COUNTER =========================
 function startTimeCounter() {
-  // EDIT: Change this to when you and your friend first met.
-  const start = new Date(2020, 0, 1); // Jan 1, 2020 - change this to your actual friendship start date
+  // Count from 1 July 2024 and update continuously (every second)
+  const start = new Date(2024, 6 - 1, 1, 0, 0, 0);
 
   if (timeCounterTimer) clearInterval(timeCounterTimer);
 
   function tick() {
-    const diff = Date.now() - start;
-    const totalH = Math.floor(diff / 3600000);
-    const y = Math.floor(totalH / 8760);
-    const mo = Math.floor((totalH % 8760) / 730);
-    const d = Math.floor(((totalH % 8760) % 730) / 24);
-    const h = totalH % 24;
+    const now = new Date();
+
+    // Calculate calendar-accurate differences
+    let years = now.getFullYear() - start.getFullYear();
+    let months = now.getMonth() - start.getMonth();
+    let days = now.getDate() - start.getDate();
+    let hours = now.getHours() - start.getHours();
+    let minutes = now.getMinutes() - start.getMinutes();
+    let seconds = now.getSeconds() - start.getSeconds();
+
+    if (seconds < 0) {
+      seconds += 60;
+      minutes -= 1;
+    }
+    if (minutes < 0) {
+      minutes += 60;
+      hours -= 1;
+    }
+    if (hours < 0) {
+      hours += 24;
+      days -= 1;
+    }
+    if (days < 0) {
+      // borrow days from previous month
+      const prevMonth = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        0,
+      ).getDate();
+      days += prevMonth;
+      months -= 1;
+    }
+    if (months < 0) {
+      months += 12;
+      years -= 1;
+    }
+
     const elY = document.getElementById("tcY");
-    const elMo = document.getElementById("tcMo");
-    const elD = document.getElementById("tcD");
     const elH = document.getElementById("tcH");
-    if (elY) elY.textContent = y;
-    if (elMo) elMo.textContent = mo;
-    if (elD) elD.textContent = d;
-    if (elH) elH.textContent = h;
+    const elMin = document.getElementById("tcMin");
+    const elS = document.getElementById("tcS");
+
+    if (elY) elY.textContent = years;
+    if (elH) elH.textContent = hours;
+    if (elMin) elMin.textContent = minutes;
+    if (elS) elS.textContent = seconds;
   }
 
   tick();
-  timeCounterTimer = setInterval(tick, 60000);
+  timeCounterTimer = setInterval(tick, 1000);
 }
